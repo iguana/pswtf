@@ -3,6 +3,7 @@ name = "pswtf"
 version = "1.0.0"
 description = "Process + port inspector for macOS"
 authors = ["pswtf"]
+license = "MIT"
 edition = "2021"
 rust-version = "1.75"
 
