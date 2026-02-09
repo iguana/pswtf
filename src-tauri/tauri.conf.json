@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.tauri.app/config/1",
+  "package": {
+    "productName": "pswtf",
+    "version": "0.1.0"
+  },
+  "build": {
+    "beforeBuildCommand": "",
+    "beforeDevCommand": "",
+    "withGlobalTauri": true,
+    "devPath": "../ui",
+    "distDir": "../ui"
+  },
+  "tauri": {
+    "windows": [
+      {
+        "title": "pswtf",
+        "width": 1440,
+        "height": 920,
+        "minWidth": 1080,
+        "minHeight": 700,
+        "resizable": true
+      }
+    ],
+    "bundle": {
+      "active": true,
+      "targets": ["app"],
+      "icon": ["icons/icon.png"],
+      "identifier": "com.pswtf.app"
+    },
+    "security": {
+      "csp": null
+    }
+  }
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pswtf</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div>
+          <h1>pswtf</h1>
+          <p class="subtitle">Process + port inspector with bulk control</p>
+        </div>
+        <div class="stat-strip">
+          <div class="stat-card">
+            <span class="label">Processes</span>
+            <span class="value" id="processCount">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Open Ports</span>
+            <span class="value" id="portCount">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Last Refresh</span>
+            <span class="value" id="lastRefresh">-</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="toolbar">
+        <div class="toolbar-group">
+          <input id="processSearch" type="search" placeholder="Search process name, PID, or command..." />
+          <select id="sortBy">
+            <option value="cpu">Sort: CPU</option>
+            <option value="memory">Sort: Memory</option>
+            <option value="pid">Sort: PID</option>
+            <option value="name">Sort: Name</option>
+          </select>
+          <label class="switch">
+            <input id="treeMode" type="checkbox" checked />
+            <span>Tree view</span>
+          </label>
+          <label class="switch">
+            <input id="autoRefresh" type="checkbox" checked />
+            <span>Auto-refresh (3s)</span>
+          </label>
+        </div>
+        <div class="toolbar-group">
+          <button id="refreshBtn" class="btn btn-secondary">Refresh</button>
+        </div>
+      </section>
+
+      <section class="bulk-actions">
+        <input id="bulkQuery" type="text" placeholder="Bulk target query (example: node, python, claude)" />
+        <button id="bulkKillBtn" class="btn btn-danger">Kill Matching + Children</button>
+      </section>
+
+      <main class="main-grid" id="mainGrid">
+        <section class="panel process-panel" id="processPanel">
+          <div class="panel-header">
+            <h2>Processes</h2>
+          </div>
+          <div class="table-shell">
+            <table id="processTable">
+              <thead>
+                <tr>
+                  <th>Process</th>
+                  <th>PID</th>
+                  <th>CPU%</th>
+                  <th>Mem</th>
+                  <th>I/O R</th>
+                  <th>I/O W</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="processRows"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <div
+          class="pane-divider"
+          id="paneDivider"
+          role="separator"
+          aria-orientation="vertical"
+          aria-label="Resize panes"
+          tabindex="0"
+        ></div>
+
+        <section class="panel side-panel" id="sidePanel">
+          <div class="tabs">
+            <button class="tab active" data-tab="details">Details</button>
+            <button class="tab" data-tab="ports">Ports</button>
+          </div>
+
+          <div id="detailsTab" class="tab-content active">
+            <div id="detailsBody" class="details-empty">Select a process to inspect details.</div>
+          </div>
+
+          <div id="portsTab" class="tab-content">
+            <div class="ports-toolbar">
+              <input id="portSearch" type="search" placeholder="Filter by port, process, or pid..." />
+            </div>
+            <div class="table-shell ports-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Port</th>
+                    <th>Proto</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>PID</th>
+                    <th>Process</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="portRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="status-bar" id="statusBar">Ready.</footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

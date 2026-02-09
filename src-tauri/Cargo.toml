@@ -1,0 +1,21 @@
+[package]
+name = "pswtf"
+version = "0.1.0"
+description = "Process + port inspector for macOS"
+authors = ["pswtf"]
+edition = "2021"
+rust-version = "1.75"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+nix = { version = "0.27", features = ["signal"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sysinfo = "0.29"
+tauri = { version = "1.6", features = [] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
