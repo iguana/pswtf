@@ -1,5 +1,7 @@
 # pswtf - ps wtf???
 
+![pswtf screenshot](pswtf.png)
+
 `pswtf` is a greenfield desktop app for macOS built with:
 - Rust + Tauri (native desktop shell)
 - Plain HTML/CSS/JavaScript (UI)
