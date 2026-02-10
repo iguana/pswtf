@@ -6,8 +6,6 @@
 - Rust + Tauri (native desktop shell)
 - Plain HTML/CSS/JavaScript (UI)
 
-No Swift/Xcode project is required.
-
 ## What it does
 
 - Lists running processes with:
@@ -30,14 +28,18 @@ No Swift/Xcode project is required.
   - kill one process tree
   - bulk kill by query (for patterns like `node`, `python`, `claude`, etc)
 
-## Project layout
+## Install
+
+Download the latest DMG from the [v1.0.0 release](https://github.com/iguana/pswtf/releases/tag/v1.0.0), open it, and drag pswtf to your Applications folder.
+
+## Development
+
+### Project layout
 
 - `/src-tauri` Rust + Tauri backend and native app entrypoint
 - `/ui` Static frontend loaded by Tauri webview
 
-## How to run
-
-## 1) Prereqs
+### Prereqs
 
 - Rust toolchain (`rustup`, `cargo`)
 - `lsof` (already present on macOS)
@@ -49,7 +51,7 @@ cargo install tauri-cli --version '^1'
 
 If you do not have full Xcode installed, this stack still avoids Xcode IDE projects. Some macOS builds still require Apple Command Line Tools (`xcode-select --install`).
 
-## 2) Dev run
+### Dev run
 
 From repo root:
 
@@ -63,7 +65,7 @@ Alternative launch without the tauri CLI helper:
 cargo run --manifest-path src-tauri/Cargo.toml
 ```
 
-## 3) Build a macOS app bundle
+### Build a macOS app bundle
 
 ```bash
 cargo tauri build
@@ -71,9 +73,8 @@ cargo tauri build
 
 This produces a packaged app/bundle under `src-tauri/target`.
 
-## Notes
+### Notes
 
 - Process and port snapshots refresh every 3 seconds by default (toggleable).
 - Kill operations use `SIGTERM` by default.
 - `open file handles` and `ports` data are gathered via `lsof`, so visibility depends on current process permissions.
-# pswtf
